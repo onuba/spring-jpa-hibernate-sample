@@ -1,0 +1,31 @@
+<configuration scan="true" scanPeriod="30 seconds">
+
+  <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />
+
+  <property name="LOG_PATH" value="C:/logs" />
+
+  <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+    <file>${LOG_PATH}/example-test.log</file>
+    <encoder>
+      <pattern>%date %level [%thread] %logger{26} %msg%n
+      </pattern>
+    </encoder>
+  </appender>
+
+  <appender name="consola" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%date %level %logger{26} %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <root level="error">
+    <appender-ref ref="consola"/>
+    <appender-ref ref="FILE" />
+  </root>
+  
+  <logger name="org.hibernate.tool.hbm2ddl" additivity="false">
+    <level value="debug" />
+    <appender-ref ref="FILE" />
+  </logger>
+
+</configuration>
